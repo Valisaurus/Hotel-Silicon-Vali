@@ -10,7 +10,7 @@ use benhall14\phpCalendar\Calendar as Calendar;
 
 $calender = new Calendar();
 // $calender->useFullDayNames();
-echo $calender->draw(date('2023-01-01'));
+// echo $calender->draw(date('2023-01-01'));
 
 // function calendar()
 // {
