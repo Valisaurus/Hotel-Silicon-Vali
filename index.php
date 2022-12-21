@@ -17,15 +17,15 @@ require __DIR__ . '/dbconnection.php';
 <body>
     <div>
         <h1>budget</h1>
-        <?php echo $calender->draw(date('2023-01-01')) ?>
+        <?php echo $calendar->draw(date('2023-01-01')) ?>
     </div>
     <div>
         <h1>standard</h1>
-        <?php echo $calender->draw(date('2023-01-01')) ?>
+        <?php echo $calendar->draw(date('2023-01-01')) ?>
     </div>
     <div>
         <h1>luxury</h1>
-        <?php echo $calender->draw(date('2023-01-01')) ?>
+        <?php echo $calendar->draw(date('2023-01-01')) ?>
     </div>
 
     <form action="index.php" method="POST">
@@ -34,9 +34,9 @@ require __DIR__ . '/dbconnection.php';
         <label for="transferCode"> Transfer Code</label><br>
         <input type="text" id="transferCode" name="transferCode"><br>
         <label for="arrivalDate">Arrival Date</label><br>
-        <input type="date" id="arrivalDate" name="arrivalDate"><br>
+        <input type="date" min="2023-01-01" max="2023-01-31" id="arrivalDate" name="arrivalDate"><br>
         <label for="departureDate">Departure Date</label><br>
-        <input type="date" id="departureDate" name="departureDate"><br>
+        <input type="date" min="2023-01-01" max="2023-01-31" id="departureDate" name="departureDate"><br>
         <label for="rooms">Rooms</label> <br>
 
         <select name="rooms" id="rooms" class="form-input">
@@ -54,7 +54,10 @@ require __DIR__ . '/dbconnection.php';
         <label for="javascript">JavaScript</label> <br> -->
         <input type="submit" value="Make a reservation">
     </form>
+
+
 </body>
+
 
 
 </html>
