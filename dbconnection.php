@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 require __DIR__ . '/hotelFunctions.php';
+require __DIR__ . '/apiconnection.php';
 
 
 // $statement = $db->query('SELECT * FROM bookings');
@@ -29,7 +30,7 @@ function checkAvailability()
         $rooms = $_POST['rooms'];
 
         //get data from db
-        $statement = $db->query('SELECT * FROM bookings
+        $statement = $db->prepare('SELECT * FROM bookings
         WHERE
         room_id = :room_id
         AND
@@ -47,21 +48,29 @@ function checkAvailability()
 
         $visitors = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-        if (empty($visitors)) {
-            $query = 'INSERT INTO bookings (name, transfer_code, arrival_date, departure_date, room_id) VALUES (:name, :transfer_code, :arrival_date, :departure_date, :room_id)';
+        //if transfercode is valid
+        if (isValidUuid($transferCode)) {
 
-            $statement = $db->prepare($query);
 
-            $statement->bindParam(':name', $name, PDO::PARAM_STR);
-            $statement->bindParam(':transfer_code',  $transferCode, PDO::PARAM_STR);
-            $statement->bindParam(':arrival_date',  $arrivalDate, PDO::PARAM_STR);
-            $statement->bindParam(':departure_date',  $departureDate, PDO::PARAM_STR);
-            $statement->bindParam(':room_id',  $rooms, PDO::PARAM_INT);
+            if (empty($visitors)) {
+                $query = 'INSERT INTO bookings (name, transfer_code, arrival_date, departure_date, room_id) VALUES (:name, :transfer_code, :arrival_date, :departure_date, :room_id)';
 
-            $statement->execute();
-        } elseif (!empty($visitors)) {
-            echo "sorry the date is not available";
+                $statement = $db->prepare($query);
+
+                $statement->bindParam(':name', $name, PDO::PARAM_STR);
+                $statement->bindParam(':transfer_code',  $transferCode, PDO::PARAM_STR);
+                $statement->bindParam(':arrival_date',  $arrivalDate, PDO::PARAM_STR);
+                $statement->bindParam(':departure_date',  $departureDate, PDO::PARAM_STR);
+                $statement->bindParam(':room_id',  $rooms, PDO::PARAM_INT);
+
+                $statement->execute();
+
+                echo "thank you for your booking";
+            } else {
+                echo "sorry the date is not available";
+            }
+        } else {
+            echo "invalid transfer code";
         }
     }
 };
-checkAvailability();

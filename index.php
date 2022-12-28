@@ -1,6 +1,7 @@
 <?php
 include_once __DIR__ . '/calendar.php';
 require __DIR__ . '/dbconnection.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -55,6 +56,9 @@ require __DIR__ . '/dbconnection.php';
         <input type="submit" value="Make a reservation">
     </form>
 
+    <?php
+    checkAvailability();
+    ?>
 
 </body>
 
