@@ -29,7 +29,7 @@ function checkAvailability()
         $departureDate = trim(htmlspecialchars($_POST['departureDate'], ENT_QUOTES));
         $rooms = $_POST['rooms'];
 
-        $totalCost = (2 * (strtotime($departureDate) - strtotime($arrivalDate)) / 86400);
+        $totalCost = ($rooms * (strtotime($departureDate) - strtotime($arrivalDate)) / 86400);
 
 
         //get data from db
