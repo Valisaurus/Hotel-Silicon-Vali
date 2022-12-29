@@ -4,13 +4,30 @@ body {
 }
 
 header {
-  height: 100%;
+  height: 100vh;
   width: 100%;
+  position: relative;
+  background-color: black;
+}
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 .head-bg {
-  width: 100%;
-  height: 90%;
+  margin-top: 0;
+  width: 70%;
+  height: 70%;
+}
+
+.heading-one {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #ffffff;
 }
 
 main {

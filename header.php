@@ -13,6 +13,10 @@
 <body>
     <header>
         <div class="header">
-            <img src="/pictures/pexels-steve-johnson-1044989.jpg" class="head-bg">
+            <img src="/pictures/pexels-steve-johnson-1280x853.jpg" class="head-bg">
         </div>
+        <div class="heading-one">
+            <h1>SILICON-VALI- HOTEL</h1>
+        </div>
+
     </header>
