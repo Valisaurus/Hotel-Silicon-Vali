@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 require __DIR__ . '/hotelFunctions.php';
-require __DIR__ . '/apiconnection.php';
+// require __DIR__ . '/apiconnection.php';
 
 
 // $statement = $db->query('SELECT * FROM bookings');
@@ -29,10 +29,14 @@ function checkAvailability()
         $departureDate = trim(htmlspecialchars($_POST['departureDate'], ENT_QUOTES));
         $rooms = $_POST['rooms'];
 
+        $totalCost = (2 * (strtotime($departureDate) - strtotime($arrivalDate)) / 86400);
+
+
         //get data from db
         $statement = $db->prepare('SELECT * FROM bookings
         WHERE
         room_id = :room_id
+        total_cost = :total_cost
         AND
         (arrival_date <= :arrival_date
         or arrival_date < :departure_date)
@@ -43,10 +47,14 @@ function checkAvailability()
         $statement->bindParam(':arrival_date', $arrivalDate, PDO::PARAM_STR);
         $statement->bindParam(':departure_date', $departureDate, PDO::PARAM_STR);
         $statement->bindParam(':room_id', $rooms, PDO::PARAM_INT);
+        $statement->bindParam(':total_cost', $totalCost, PDO::PARAM_INT);
+        // $statement->bindParam(':cost', $cost, PDO::PARAM_INT);
 
         $statement->execute();
 
         $visitors = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+
 
         //if transfercode is valid
         if (isValidUuid($transferCode)) {
@@ -62,8 +70,10 @@ function checkAvailability()
                 $statement->bindParam(':arrival_date',  $arrivalDate, PDO::PARAM_STR);
                 $statement->bindParam(':departure_date',  $departureDate, PDO::PARAM_STR);
                 $statement->bindParam(':room_id',  $rooms, PDO::PARAM_INT);
+                $statement->bindParam(':total_cost', $totalCost, PDO::PARAM_INT);
 
                 $statement->execute();
+                print_r($totalCost);
 
                 echo "thank you for your booking";
             } else {

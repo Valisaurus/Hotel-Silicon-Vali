@@ -1,6 +1,8 @@
 <?php
-include_once __DIR__ . '/calendar.php';
-require __DIR__ . '/dbconnection.php';
+include_once(__DIR__ . '/calendar.php');
+require(__DIR__ . '/dbconnection.php');
+require(__DIR__ . '/apiconnection.php');
+
 
 ?>
 
