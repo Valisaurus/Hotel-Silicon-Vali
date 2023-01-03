@@ -1,7 +1,7 @@
 <?php
 include(__DIR__ . '/header.php');
 include_once(__DIR__ . '/calendar.php');
-require(__DIR__ . '/dbconnection.php');
+require(__DIR__ . '/validation.php');
 
 
 
@@ -25,9 +25,9 @@ require(__DIR__ . '/dbconnection.php');
 
     <form action="index.php" method="POST">
         <label for="name"> Name</label><br>
-        <input type="text" id="name" name="name"><br>
+        <input type="text" id="name" name="name" required><br>
         <label for="transferCode"> Transfer Code</label><br>
-        <input type="text" id="transferCode" name="transferCode"><br>
+        <input type="text" id="transferCode" name="transferCode" required><br>
         <label for="arrivalDate">Arrival Date</label><br>
         <input type="date" min="2023-01-01" max="2023-01-31" id="arrivalDate" name="arrivalDate"><br>
         <label for="departureDate">Departure Date</label><br>
@@ -51,7 +51,7 @@ require(__DIR__ . '/dbconnection.php');
     </form>
 
     <?php
-    checkAvailability();
+    validationForm();
     ?>
 </main>
 </body>

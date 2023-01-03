@@ -24,12 +24,10 @@ function checkTransferCode(string $transferCode, int $totalCost)
         ]
     );
 
-
     if ($response->hasHeader('Content-Length')) {
         $transfer_code = json_decode($response->getBody()->getContents());
     }
     if (isset($transfer_code->error)) {
-
 
         return  false;
     } else {
@@ -53,7 +51,7 @@ function totalCost(int $room_id, string $arrivalDate, string $departureDate)
     return $totalCost;
 }
 
-function checkDateAvailability(string $name, string $transferCode, string $arrivalDate, string $departureDate, int $room_id, int $totalCost)
+function checkDateAvailability(string $arrivalDate, string $departureDate, int $room_id)
 {
     //get data from db
     $db = connect('/hotel.db');
@@ -77,20 +75,26 @@ function checkDateAvailability(string $name, string $transferCode, string $arriv
 
     $visitors = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-    if (empty($visitors)) {
-        $query = "INSERT INTO bookings (name, transfer_code, arrival_date, departure_date, room_id, total_cost) VALUES (:name, :transfer_code, :arrival_date, :departure_date, :room_id, :total_cost)";
-
-        $statement = $db->prepare($query);
-
-        $statement->bindParam(':name', $name, PDO::PARAM_STR);
-        $statement->bindParam(':transfer_code',  $transferCode, PDO::PARAM_STR);
-        $statement->bindParam(':arrival_date',  $arrivalDate, PDO::PARAM_STR);
-        $statement->bindParam(':departure_date',  $departureDate, PDO::PARAM_STR);
-        $statement->bindParam(':room_id',  $room_id, PDO::PARAM_INT);
-        $statement->bindParam(':total_cost', $totalCost, PDO::PARAM_INT);
-
-        $statement->execute();
+    if (empty($visitors) && $departureDate > $arrivalDate) {
+        return true;
     }
+}
+
+function insertIntoDb(string $name, string $transferCode, string $arrivalDate, string $departureDate, int $room_id, int $totalCost)
+{
+    $db = connect('/hotel.db');
+    $query = "INSERT INTO bookings (name, transfer_code, arrival_date, departure_date, room_id, total_cost) VALUES (:name, :transfer_code, :arrival_date, :departure_date, :room_id, :total_cost)";
+
+    $statement = $db->prepare($query);
+
+    $statement->bindParam(':name', $name, PDO::PARAM_STR);
+    $statement->bindParam(':transfer_code',  $transferCode, PDO::PARAM_STR);
+    $statement->bindParam(':arrival_date',  $arrivalDate, PDO::PARAM_STR);
+    $statement->bindParam(':departure_date',  $departureDate, PDO::PARAM_STR);
+    $statement->bindParam(':room_id',  $room_id, PDO::PARAM_INT);
+    $statement->bindParam(':total_cost', $totalCost, PDO::PARAM_INT);
+
+    $statement->execute();
 }
 
 
@@ -106,31 +110,11 @@ function getBookingConf(string $name, string $arrivalDate, string $departureDate
         'stars' => "1"
 
     ];
+    echo "Thank You for your reservation at our " . $receipt['stars'] . "-Star " . $receipt['hotel'] . ", $name!" . "<br>" . "Your arrival date is " . "$arrivalDate " . "<br>" . "and your departure date is " . "$departureDate." . "<br>" . "The total fee for your stay is " . $receipt['total_cost'] . "." . "<br>" . "We are looking forward seeing You!";
 
     $getData = file_get_contents(__DIR__ . '/receipts/receipt.json');
     $tempArray = json_decode($getData, true);
     array_push($tempArray, $receipt);
     $json = json_encode($tempArray);
     file_put_contents(__DIR__ . '/receipts/receipt.json', $json);
-    print_r($json);
 }
-
-
-// function insertIntoDb(string $name, string $transferCode, string $arrivalDate, string $departureDate, int $room_id, int $totalCost)
-// {
-//$db = connect('/hotel.db');
-    // $query = "INSERT INTO bookings (name, transfer_code, arrival_date, departure_date, room_id, total_cost) VALUES (:name, :transfer_code, :arrival_date, :departure_date, :room_id, :total_cost)";
-
-    // $statement = $db->prepare($query);
-
-    // $statement->bindParam(':name', $name, PDO::PARAM_STR);
-    // $statement->bindParam(':transfer_code',  $transferCode, PDO::PARAM_STR);
-    // $statement->bindParam(':arrival_date',  $arrivalDate, PDO::PARAM_STR);
-    // $statement->bindParam(':departure_date',  $departureDate, PDO::PARAM_STR);
-    // $statement->bindParam(':room_id',  $room_id, PDO::PARAM_INT);
-    // $statement->bindParam(':total_cost', $totalCost, PDO::PARAM_INT);
-
-    // $statement->execute();
-
-    // return  true;
-//}
