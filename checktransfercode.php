@@ -2,27 +2,19 @@
 
 declare(strict_types=1);
 require(__DIR__ . '/vendor/autoload.php');
-// require(__DIR__ . '/index.php');
+
 
 
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 
-$client = new Client();
-
-if (isset($_POST['transferCode'], $_POST['arrivalDate'], $_POST['departureDate'], $_POST['rooms'])) {
-    $transferCode = trim(htmlspecialchars($_POST['transferCode'], ENT_QUOTES));
-    $arrivalDate = trim(htmlspecialchars($_POST['arrivalDate'], ENT_QUOTES));
-    $departureDate = trim(htmlspecialchars($_POST['departureDate'], ENT_QUOTES));
-    $rooms = $_POST['rooms'];
-
-
-    $totalCost = ($rooms * (strtotime($departureDate) - strtotime($arrivalDate)) / 86400);
 
 
 
-
+function checkTransferCode(string $transferCode, int $totalCost)
+{
+    $client = new Client();
     $response = $client->request(
         'POST',
         'https://www.yrgopelago.se/centralbank/transferCode',
@@ -39,8 +31,23 @@ if (isset($_POST['transferCode'], $_POST['arrivalDate'], $_POST['departureDate']
 
     if ($response->hasHeader('Content-Length')) {
         $transfer_code = json_decode($response->getBody()->getContents());
+        //     echo "<pre>";
+        //     print_r($transfer_code);
+        //     echo "</pre>";
+    }
+    if (isset($transfer_code->error)) {
+
+
+        return  false;
+    } else {
+        return true;
     }
 }
+
+
+
+
+
 // echo "hej";
 
 // $totalCost = 5 *  (strtotime('2023-01-05') - strtotime('2023-01-01')) / 86400;
