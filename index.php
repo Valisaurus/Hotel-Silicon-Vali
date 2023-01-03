@@ -12,15 +12,15 @@ require(__DIR__ . '/validation.php');
 <main>
     <div>
         <h1>budget</h1>
-        <?php echo $calendar->draw(date('2023-01-01')) ?>
+        <?php bookedDays(); ?>
     </div>
     <div>
         <h1>standard</h1>
-        <?php echo $calendar->draw(date('2023-01-01')) ?>
+        <?php bookedDays(); ?>
     </div>
     <div>
         <h1>luxury</h1>
-        <?php echo $calendar->draw(date('2023-01-01')) ?>
+        <?php bookedDays(); ?>
     </div>
 
     <form action="index.php" method="POST">

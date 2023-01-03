@@ -8,6 +8,10 @@ require(__DIR__ . '/vendor/autoload.php');
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 
+use benhall14\phpCalendar\Calendar as Calendar;
+
+$calendar->stylesheet();
+
 //a function that checks the transfer code
 
 function checkTransferCode(string $transferCode, int $totalCost)
@@ -110,11 +114,40 @@ function getBookingConf(string $name, string $arrivalDate, string $departureDate
         'stars' => "1"
 
     ];
-    echo "Thank You for your reservation at our " . $receipt['stars'] . "-Star " . $receipt['hotel'] . ", $name!" . "<br>" . "Your arrival date is " . "$arrivalDate " . "<br>" . "and your departure date is " . "$departureDate." . "<br>" . "The total fee for your stay is " . $receipt['total_cost'] . "." . "<br>" . "We are looking forward seeing You!";
+    // echo "Thank You for your reservation at our " . $receipt['stars'] . "-Star " . $receipt['hotel'] . ", $name!" . "<br>" . "Your arrival date is " . "$arrivalDate " . "<br>" . "and your departure date is " . "$departureDate." . "<br>" . "The total fee for your stay is " . $receipt['total_cost'] . "." . "<br>" . "We are looking forward seeing You!";
+
 
     $getData = file_get_contents(__DIR__ . '/receipts/receipt.json');
     $tempArray = json_decode($getData, true);
     array_push($tempArray, $receipt);
     $json = json_encode($tempArray);
     file_put_contents(__DIR__ . '/receipts/receipt.json', $json);
+
+    print_r(end($tempArray));
+}
+function bookedDays()
+{
+
+
+    if (isset($_POST['arrivalDate'], $_POST['departureDate'], $_POST['rooms'])) {
+
+        $arrivalDate = trim(htmlspecialchars($_POST['arrivalDate'], ENT_QUOTES));
+        $departureDate = trim(htmlspecialchars($_POST['departureDate'], ENT_QUOTES));
+        $rooms = $_POST['rooms'];
+        $rooms = intval($rooms);
+
+        checkDateAvailability($arrivalDate, $departureDate, $rooms);
+
+
+        $events[] = array(
+            'start' => $arrivalDate,
+            'end' => $departureDate,
+            'summary' => 'Booked',
+            'mask' => true
+        );
+
+        $calendar = new Calendar;
+        $calendar->useMondayStartingDate();
+        $calendar->addEvents($events)->display(date('Y-m-d'));
+    }
 }

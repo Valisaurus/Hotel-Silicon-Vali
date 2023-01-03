@@ -6,6 +6,7 @@ require(__DIR__ . '/hotelFunctions.php');
 require(__DIR__ . '/functions.php');
 
 
+
 // If dates and room are available and if transfer code is valid
 
 function validationForm()
@@ -33,7 +34,6 @@ function validationForm()
             if (isValidUuid($transferCode)) {
 
                 //count the total cost of the booking
-
                 $totalCost = totalCost($rooms, $arrivalDate, $departureDate);
 
                 //checks if the transfer code is valid

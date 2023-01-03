@@ -2,12 +2,25 @@
 
 declare(strict_types=1);
 
-require 'vendor/autoload.php';
+require(__DIR__ . '/vendor/autoload.php');
+// require(__DIR__ . '/functions.php');
+
+// checkDateAvailability($arrivalDate, $departureDate, $rooms);
 
 use benhall14\phpCalendar\Calendar as Calendar;
 
+// function bookedDays(string $arrivalDate, string $departureDate)
+// {
+//     $events[] = array(
+//         'start' => $arrivalDate,
+//         'end' => $departureDate,
+//         'summary' => 'Booked',
+//         'mask' => true
+//     );
+
 $calendar = new Calendar;
 $calendar->useMondayStartingDate();
+// $calendar->addEvents($events)->setTimeFormat('00:00', '00:00', 10)->display(date('Y-m-d'));
 
 
 
