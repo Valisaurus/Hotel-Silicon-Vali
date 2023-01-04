@@ -4,7 +4,8 @@ body {
 }
 
 header {
-  height: 100vh;
+  margin: 10rem;
+  height: 30%;
   width: 100%;
   position: relative;
   background-color: black;
@@ -16,10 +17,10 @@ header {
   align-items: center;
 }
 
-.head-bg {
+.header img {
   margin-top: 0;
-  width: 70%;
-  height: 70%;
+  width: 40%;
+  height: 20%;
 }
 
 .heading-one {
@@ -31,5 +32,18 @@ header {
 }
 
 main {
-  margin-top: 13rem;
+  margin-top: 0;
+}
+
+.hotelimg img {
+  margin-top: 0;
+  height: 30%;
+  width: 30%;
+}
+.hotelimg {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
 }

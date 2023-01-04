@@ -3,71 +3,51 @@
 declare(strict_types=1);
 
 require(__DIR__ . '/vendor/autoload.php');
-// require(__DIR__ . '/functions.php');
+//require(__DIR__ . '/hotelFunctions.php');
 
-// checkDateAvailability($arrivalDate, $departureDate, $rooms);
+
+
+
 
 use benhall14\phpCalendar\Calendar as Calendar;
 
-// function bookedDays(string $arrivalDate, string $departureDate)
-// {
-//     $events[] = array(
-//         'start' => $arrivalDate,
-//         'end' => $departureDate,
-//         'summary' => 'Booked',
-//         'mask' => true
-//     );
+$calendar1 = new Calendar;
+$calendar2 = new Calendar;
+$calendar3 = new Calendar;
 
-$calendar = new Calendar;
-$calendar->useMondayStartingDate();
-// $calendar->addEvents($events)->setTimeFormat('00:00', '00:00', 10)->display(date('Y-m-d'));
+$roomCalendar = [
+    ["room" => 1, "calendar" => $calendar1],
+    ["room" => 2, "calendar" => $calendar2],
+    ["room" => 3, "calendar" => $calendar3]
 
+];
+foreach ($roomCalendar as $key => $calendar) {
 
+    $calendar = $calendar['calendar'];
+    $calendar->useMondayStartingDate();
+    $calendar->stylesheet();
+}
 
-// $calender->useFullDayNames();
-// echo $calender->draw(date('2023-01-01'));
+function bookedDays(array $roomCalendar)
+{
 
-// function calendar()
-// {
-//     # create the calendar object
-//     $calendar = new Calendar;
+    $database = connect('/hotel.db');
 
-//     # change the weekly start date to "Monday"
-//     $calendar->useMondayStartingDate();
+    $statement = $database->query('SELECT bookings.arrival_date, bookings.departure_date, bookings.room_id, rooms.room, rooms.cost FROM bookings INNER JOIN rooms ON rooms.id=bookings.room_id');
 
-//     # or revert to the default "Sunday"
-//     $calendar->useSundayStartingDate();
+    $statement->execute();
+    $reservations = $statement->fetchAll(PDO::FETCH_ASSOC);
+    if (!empty($reservations)) {
+        $mask = true;
+    }
+    foreach ($roomCalendar as $calendar) {
 
-//     # (optional) - if you want to use full day names instead of initials (ie, Sunday instead of S), apply the following:
-//     $calendar->useFullDayNames();
+        foreach ($reservations as $event) {
+            if ($event['room_id'] === $calendar['room']) {
+                $calendar['calendar']->addEvent($event['arrival_date'], $event['departure_date'], false,  $mask, $event['cost']);
+            }
+        }
+    }
+}
 
-//     # to revert to initials, use:
-//     $calendar->useInitialDayNames();
-
-//     # add your own table class(es)
-//     $calendar->addTableClasses('class-1 class-2 class-3');
-//     # or using an array of classes.
-//     $calendar->addTableClasses(['class-1', 'class-2', 'class-3']);
-
-//     # (optional) - if you want to hide certain weekdays from the calendar, for example a calendar without weekends, you can use the following methods:
-//     $calendar->hideSaturdays();         # This will hide Saturdays
-//     $calendar->hideSundays();         # This will hide Sundays
-//     $calendar->hideMondays();         # This will hide Mondays
-//     $calendar->hideTuesdays();         # This will hide Tuesdays
-//     $calendar->hideWednesdays();    # This will hide Wednesdays
-//     $calendar->hideThursdays();        # This will hide Thursdays
-//     $calendar->hideFridays();        # This will hide Fridays
-
-
-
-//     // # finally, to draw a calendar
-//     // echo $calendar->draw(date('2023-01-01')); # draw this months calendar
-
-
-//     # you can also call ->display(), which handles the echo'ing and adding the stylesheet.
-//     # draw this months calendar
-//     echo $calendar->draw(date('2023-01-01'));
-// }
-// calendar();
-// calendar();
-// calendar();
+bookedDays($roomCalendar);

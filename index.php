@@ -1,7 +1,7 @@
 <?php
 include(__DIR__ . '/header.php');
-include_once(__DIR__ . '/calendar.php');
 require(__DIR__ . '/validation.php');
+require(__DIR__ . '/calendar.php');
 
 
 
@@ -11,18 +11,31 @@ require(__DIR__ . '/validation.php');
 
 <main>
     <div>
-        <h1>budget</h1>
-        <?php bookedDays(); ?>
+        <div class="hotelimg">
+            <img src="/pictures/pexels-aleksandar-pasaric-hotel-night.jpg">
+        </div>
+        <div class="hotelimg">
+            <img src="/pictures/pexels-efrain-alonso-hotel-street.jpg">
+        </div>
+        <h2>Our rooms</h2>
+
+        <h3>budget</h3>
+        <img src="/pictures/pexels-andrew-neel-budget.jpg">
+        <?php echo $calendar1->draw(date('Y-m-d')); ?>
     </div>
     <div>
-        <h1>standard</h1>
-        <?php bookedDays(); ?>
+
+        <h3>standard</h3>
+        <img src="/pictures/pexels-andrew-neel-standard.jpg">
+        <?php echo $calendar2->draw(date('Y-m-d')); ?>
     </div>
     <div>
-        <h1>luxury</h1>
-        <?php bookedDays(); ?>
+        <h3>luxury</h3>
+        <img src="/pictures/pexels-mikhail-nilov-luxury.jpg">
+        <?php echo $calendar3->draw(date('Y-m-d')); ?>
     </div>
 
+    <h3>Book your room here</h3>
     <form action="index.php" method="POST">
         <label for="name"> Name</label><br>
         <input type="text" id="name" name="name" required><br>
