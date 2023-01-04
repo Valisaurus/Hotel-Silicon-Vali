@@ -36,6 +36,36 @@ function checkTransferCode(string $transferCode, int $totalCost)
     }
 }
 
+// a function that makes a deposit
+function deposit(string $transferCode)
+{
+    $client = new Client();
+    $response = $client->request(
+        'POST',
+        'https://www.yrgopelago.se/centralbank/deposit',
+        [
+            'form_params' => [
+                'user' => "Dan",
+                'transferCode' => $transferCode
+
+            ]
+        ]
+    );
+
+    if ($response->hasHeader('Content-Length')) {
+        $transfer_code = json_decode($response->getBody()->getContents());
+        print_r($transfer_code);
+    }
+    // if (isset($transfer_code->message)) {
+
+    //     return  true;
+    // } else {
+    //     return false;
+    // }
+}
+deposit("324ddb65-2c8e-40a5-9699-873aea73977e");
+
+
 // a function that calculates the total cost of the booking
 function totalCost(int $room_id, string $arrivalDate, string $departureDate)
 {
@@ -111,7 +141,6 @@ function getBookingConf(string $name, string $arrivalDate, string $departureDate
         'stars' => "1"
 
     ];
-    // echo "Thank You for your reservation at our " . $receipt['stars'] . "-Star " . $receipt['hotel'] . ", $name!" . "<br>" . "Your arrival date is " . "$arrivalDate " . "<br>" . "and your departure date is " . "$departureDate." . "<br>" . "The total fee for your stay is " . $receipt['total_cost'] . "." . "<br>" . "We are looking forward seeing You!";
 
 
     $getData = file_get_contents(__DIR__ . '/receipts/receipt.json');
