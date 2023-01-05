@@ -41,9 +41,17 @@ function validationForm()
 
                 if ($isTransferCodeTrue) {
 
-                    insertIntoDb($name, $transferCode, $arrivalDate, $departureDate, $rooms, $totalCost);
+                    $isDepositTrue = deposit($transferCode);
+                    if ($isDepositTrue) {
 
-                    getBookingConf($name, $arrivalDate, $departureDate, $totalCost);
+
+
+                        insertIntoDb($name, $transferCode, $arrivalDate, $departureDate, $rooms, $totalCost);
+
+                        getBookingConf($name, $arrivalDate, $departureDate, $totalCost);
+                    } else {
+                        echo "sorry transfer code not found or already used";
+                    }
                 } else {
                     echo "Sorry not enough money";
                 }

@@ -54,16 +54,14 @@ function deposit(string $transferCode)
 
     if ($response->hasHeader('Content-Length')) {
         $transfer_code = json_decode($response->getBody()->getContents());
-        print_r($transfer_code);
     }
-    // if (isset($transfer_code->message)) {
+    if (isset($transfer_code->message)) {
 
-    //     return  true;
-    // } else {
-    //     return false;
-    // }
+        return  true;
+    } else {
+        return false;
+    }
 }
-deposit("324ddb65-2c8e-40a5-9699-873aea73977e");
 
 
 // a function that calculates the total cost of the booking
@@ -152,12 +150,3 @@ function getBookingConf(string $name, string $arrivalDate, string $departureDate
     echo "Thank you for your booking" . " " . $name . "." . " " . "Here is your receipt <br>";
     echo json_encode(end($tempArray));
 }
-
-
-
-// $events[] = array(
-    //     'start' => $arrivalDate,
-    //     'end' => $departureDate,
-    //     'summary' => 'Booked',
-    //     'mask' => true
-    // );

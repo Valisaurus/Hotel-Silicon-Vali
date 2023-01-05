@@ -25,7 +25,7 @@ foreach ($roomCalendar as $key => $calendar) {
 
     $calendar = $calendar['calendar'];
     $calendar->useMondayStartingDate();
-    $calendar->stylesheet();
+    // $calendar->stylesheet();
 }
 
 function bookedDays(array $roomCalendar)

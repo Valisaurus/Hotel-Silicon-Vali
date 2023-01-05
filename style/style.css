@@ -47,3 +47,8 @@ main {
   justify-content: start;
   align-items: center;
 }
+.mask-start,
+.mask {
+  background-color: red;
+  color: #ffffff;
+}
