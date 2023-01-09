@@ -1,41 +1,4 @@
-const budgetPics = [
-  '/pictures/budget.jpg',
-  '/pictures/budget.jpg',
-  '/pictures/budget.jpg',
-  '/pictures/budget.jpg',
-];
-
-const standardPics = [
-  '/pictures/standard.jpg',
-  '/pictures/standard.jpg',
-  '/pictures/standard.jpg',
-  '/pictures/standard.jpg',
-];
-
-const luxuryPics = [
-  '/pictures/luxury.jpg',
-  '/pictures/luxury.jpg',
-  '/pictures/luxury.jpg',
-  '/pictures/luxury.jpg',
-];
-
 //////////////////
-
-// const imgBudget = document.querySelector('.budget');
-// imgBudget.src = '/pictures/budget.jpg';
-// const imgRoomBudget = document.querySelector('.room-budget');
-// imgRoomBudget.append(imgBudget);
-
-const imgStandard = document.querySelector('.standard');
-imgStandard.src = '/pictures/standard.jpg';
-const imgRoomStandard = document.querySelector('.room-standard');
-imgRoomStandard.append(imgStandard);
-
-const imgLuxury = document.querySelector('.luxury');
-imgLuxury.src = '/pictures/luxury.jpg';
-const imgRoomLuxury = document.querySelector('.room-standard');
-imgRoomLuxury.append(imgStandard);
-
 function startBudget() {
   const imgBudget = document.querySelector('.budget');
   const imgRoomBudget = document.querySelector('.room-budget');
