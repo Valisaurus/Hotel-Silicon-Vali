@@ -1,3 +1,11 @@
+<?php
+//include(__DIR__ . '/header.php');
+require(__DIR__ . '/validation.php');
+require(__DIR__ . '/calendar.php');
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,11 +20,17 @@
 
 <body>
     <header>
-        <div class="header">
-            <img src="/pictures/pexels-steve-johnson-1280x853.jpg" class="head-bg">
+        <div class="header-img">
+            <h1 class="heading-one">SILICON-VALI- HOTEL</h1>
         </div>
-        <div class="heading-one">
-            <h1>SILICON-VALI- HOTEL</h1>
-        </div>
+        <nav class="navbar">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Rooms</a></li>
+                <li><a href="#">Contact</a></li>
+
+            </ul>
+        </nav>
 
     </header>

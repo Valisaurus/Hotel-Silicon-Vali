@@ -33,7 +33,7 @@ function bookedDays(array $roomCalendar)
 
     $database = connect('/hotel.db');
 
-    $statement = $database->query('SELECT bookings.arrival_date, bookings.departure_date, bookings.room_id, rooms.room, rooms.cost FROM bookings INNER JOIN rooms ON rooms.id=bookings.room_id');
+    $statement = $database->query('SELECT bookings.arrival_date, bookings.departure_date, bookings.room_id, rooms.room FROM bookings INNER JOIN rooms ON rooms.id=bookings.room_id');
 
     $statement->execute();
     $reservations = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -44,7 +44,7 @@ function bookedDays(array $roomCalendar)
 
         foreach ($reservations as $event) {
             if ($event['room_id'] === $calendar['room']) {
-                $calendar['calendar']->addEvent($event['arrival_date'], $event['departure_date'], false,  $mask, $event['cost']);
+                $calendar['calendar']->addEvent($event['arrival_date'], $event['departure_date'], "",  $mask, "");
             }
         }
     }

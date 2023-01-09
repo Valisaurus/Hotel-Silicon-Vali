@@ -136,7 +136,9 @@ function getBookingConf(string $name, string $arrivalDate, string $departureDate
         'arrival_date' => $arrivalDate,
         'departure_date' => $departureDate,
         'total_cost' => $totalCost,
-        'stars' => "1"
+        'stars' => "1",
+        'features' => [],
+        'addtional_info' => "Thank you for booking Hotel-Silicon-Vali, Hope you have a nice stay."
 
     ];
 

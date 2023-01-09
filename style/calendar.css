@@ -5,3 +5,9 @@
 .cal-day-box {
   padding: 1rem;
 }
+
+.mask-start,
+.mask {
+  background-color: red;
+  color: #ffffff;
+}
