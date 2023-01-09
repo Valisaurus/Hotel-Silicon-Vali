@@ -43,9 +43,11 @@ function startBudget() {
   let delayInSeconds = 1;
 
   const budget = [
-    '/pictures/budget.jpg',
-    '/pictures/budget2.jpg',
-    '/pictures/budget3.jpg',
+    '/pictures/budget1.png',
+    //'/pictures/budget2.png',
+    //'/pictures/budget3.png',
+    '/pictures/budget4.png',
+    '/pictures/budget5.png',
   ];
 
   let num = 0;
@@ -70,9 +72,9 @@ function startStandard() {
 
   let delayInSeconds = 1;
   const standard = [
-    '/pictures/standard.jpg',
-    '/pictures/standard2.jpg',
-    '/pictures/standard.jpg',
+    '/pictures/standard1.png',
+    '/pictures/standard2.png',
+    '/pictures/standard3.png',
   ];
   let num = 0;
   let changeImageStandard = function () {
@@ -85,7 +87,30 @@ function startStandard() {
   };
   setInterval(changeImageStandard, delayInSeconds * 1500);
 }
+
+function startLuxury() {
+  const imgLuxury = document.querySelector('.luxury');
+  const imgRoomLuxury = document.querySelector('.room-luxury');
+
+  let delayInSeconds = 1;
+  const luxury = [
+    '/pictures/luxury1.png',
+    '/pictures/luxury2.png',
+    '/pictures/luxury3.png',
+  ];
+  let num = 0;
+  let changeImageLuxury = function () {
+    let len = luxury.length;
+    imgLuxury.src = luxury[num++];
+    imgRoomLuxury.append(imgLuxury);
+    if (num == len) {
+      num = 0;
+    }
+  };
+  setInterval(changeImageLuxury, delayInSeconds * 1500);
+}
 window.onpageshow = function () {
   startBudget();
   startStandard();
+  startLuxury();
 };
