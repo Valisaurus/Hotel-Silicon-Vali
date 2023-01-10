@@ -7,12 +7,12 @@ require(__DIR__ . '/functions.php');
 
 
 
-// If dates and room are available and if transfer code is valid
+// function that checks if form variables are set and calls on other
 
 function validationForm()
 {
 
-    //se if the variables in the form are set
+    //checks if the variables in the form are set
     if (isset($_POST['name'], $_POST['transferCode'], $_POST['arrivalDate'], $_POST['departureDate'], $_POST['rooms'])) {
 
         $name = trim(htmlspecialchars($_POST['name'], ENT_QUOTES));
@@ -24,24 +24,26 @@ function validationForm()
         //makes $rooms into an int
         $rooms = intval($rooms);
 
+        // calls on function that checks if dates are available
         if (checkDateAvailability($arrivalDate, $departureDate, $rooms)) {
 
             if (empty($name)) {
                 echo "please enter your name";
                 return false;
             }
-            //if transfer code is valid
+            //calls on function that checks if uuid is valid
             if (isValidUuid($transferCode)) {
 
-                //count the total cost of the booking
+                //calls on function that counts the total cost of the booking
                 $totalCost = totalCost($rooms, $arrivalDate, $departureDate);
 
-                //checks if the transfer code is valid
+                //calls on function that checks if the transfer code and deposit are valid
                 $isTransferCodeTrue = checkTransferCode($transferCode, $totalCost);
                 $isDepositTrue = deposit($transferCode);
 
                 if ($isTransferCodeTrue && $isDepositTrue) {
 
+                    // function that inserts data into db is called if all above functions are valid
                     insertIntoDb($name, $transferCode, $arrivalDate, $departureDate, $rooms, $totalCost);
 
                     getBookingConf($name, $arrivalDate, $departureDate, $totalCost);

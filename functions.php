@@ -3,13 +3,11 @@
 declare(strict_types=1);
 require(__DIR__ . '/vendor/autoload.php');
 
-
-
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 
 
-//a function that checks the transfer code
+//function that checks the transfer code and total cost
 
 function checkTransferCode(string $transferCode, int $totalCost)
 {
@@ -37,7 +35,7 @@ function checkTransferCode(string $transferCode, int $totalCost)
 }
 
 
-// a function that makes a deposit
+//  function that makes a deposit
 function deposit(string $transferCode)
 {
     $client = new Client();
@@ -65,10 +63,13 @@ function deposit(string $transferCode)
 }
 
 
-// a function that calculates the total cost of the booking
+// function that calculates the total cost of the booking
 function totalCost(int $room_id, string $arrivalDate, string $departureDate)
 {
+    //db connection
     $db = connect('/hotel.db');
+
+    //sql query
     $stmt = $db->prepare('SELECT cost FROM rooms WHERE id = :room_id');
     $stmt->bindParam(':room_id', $room_id, PDO::PARAM_INT);
     $stmt->execute();
@@ -81,11 +82,13 @@ function totalCost(int $room_id, string $arrivalDate, string $departureDate)
     return $totalCost;
 }
 
+//function that checks if chosen dates are available
 function checkDateAvailability(string $arrivalDate, string $departureDate, int $room_id)
 {
-    //get data from db
+    //db connection
     $db = connect('/hotel.db');
 
+    //sql query
     $statement = $db->prepare('SELECT * FROM bookings
             WHERE
             room_id = :room_id
@@ -100,7 +103,6 @@ function checkDateAvailability(string $arrivalDate, string $departureDate, int $
     $statement->bindParam(':departure_date', $departureDate, PDO::PARAM_STR);
     $statement->bindParam(':room_id', $room_id, PDO::PARAM_INT);
 
-
     $statement->execute();
 
     $visitors = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -110,9 +112,13 @@ function checkDateAvailability(string $arrivalDate, string $departureDate, int $
     }
 }
 
+//function that inserts data from form to db
 function insertIntoDb(string $name, string $transferCode, string $arrivalDate, string $departureDate, int $room_id, int $totalCost)
 {
+    //db connection
     $db = connect('/hotel.db');
+
+    //sql query
     $query = "INSERT INTO bookings (name, transfer_code, arrival_date, departure_date, room_id, total_cost) VALUES (:name, :transfer_code, :arrival_date, :departure_date, :room_id, :total_cost)";
 
     $statement = $db->prepare($query);
@@ -127,7 +133,7 @@ function insertIntoDb(string $name, string $transferCode, string $arrivalDate, s
     $statement->execute();
 }
 
-
+//function that gives a receipt when booked
 function getBookingConf(string $name, string $arrivalDate, string $departureDate, int $totalCost)
 {
     $receipt = [

@@ -26,9 +26,10 @@ require(__DIR__ . '/calendar.php');
         <nav class="navbar">
             <ul>
                 <li><a href="index.php">Home</a></li>
-                <li><a href="#">About</a></li>
+                <li><a href="#about_section">About</a></li>
                 <li><a href="#rooms_section">Rooms</a></li>
                 <li><a href="#form_section">Book</a></li>
+                <li><a href="#">Contact</a></li>
 
             </ul>
         </nav>

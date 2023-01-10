@@ -27,24 +27,22 @@ header {
   font-size: 1.5rem;
 }
 
+/* header with heading and backgroung img */
 .header-img {
   background-image: url('/pictures/bg6.png');
   background-size: cover;
   height: 100%;
   width: 100%;
-}
-
-.header-img {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 }
-
+/* h1 */
 .heading-one {
   color: #ffffff;
 }
-
+/* nav list */
 ul {
   list-style-type: none;
   margin: 0;
@@ -58,13 +56,15 @@ li {
 }
 
 li a {
-  display: flex;
-  flex-direction: row;
-  text-align: center;
+  display: block;
   color: black;
-  padding: 1rem 4rem;
+  text-align: center;
+  padding: 1rem;
+  margin-right: 1.9rem;
+  padding-left: 1.3rem;
   text-decoration: none;
   font-family: 'Share Tech Mono';
+  font-size: 1.2rem;
 }
 
 li a:hover {
@@ -75,7 +75,7 @@ main {
   margin-top: 0;
 }
 
-.hotelimages {
+.hero {
   margin-top: 3rem;
   width: 100%;
   background-color: black;
@@ -86,22 +86,24 @@ main {
   align-items: center;
 }
 
-.hotelimages img {
+.hero img {
   height: 34%;
   width: 33%;
 }
-.hotelinfo {
+/* section with room types */
+.room-type {
   margin-top: 0;
 }
 
-.hotelinfo-item {
+/* each room */
+.room-type-item {
   width: 100%;
   height: 100%;
   background-color: black;
   padding-bottom: 5rem;
 }
 
-.hotelinfo img {
+.room-type img {
   width: 40%;
   height: 40%;
 }
@@ -116,6 +118,7 @@ h2 {
   font-family: 'Share Tech Mono';
   font-size: 3.5rem;
 }
+
 /* h3 for rooms */
 .room-heading {
   text-align: start;
@@ -132,6 +135,7 @@ h2 {
   font-size: 2rem;
   color: black;
 }
+/* div with price and calendar */
 .room-budget,
 .room-standard,
 .room-luxury {
@@ -143,6 +147,7 @@ h2 {
   gap: 7rem;
 }
 
+/* price tag */
 .price {
   position: absolute;
   bottom: 80%;
@@ -158,9 +163,10 @@ h2 {
   font-family: 'Share Tech Mono';
 }
 
+/* form */
 .form {
   padding-top: 2rem;
-  padding-bottom: 10rem;
+  padding-bottom: 2rem;
   padding-left: 2rem;
   display: flex;
   flex-direction: column;
@@ -169,6 +175,8 @@ h2 {
   background-color: #ffffff;
   font-family: 'Share Tech Mono';
 }
+
+/* form inputs */
 input#name,
 input#transferCode,
 input#arrivalDate,
@@ -181,6 +189,8 @@ select#rooms.form-input {
   width: 16.3rem;
   padding: 0.5rem;
 }
+
+/* button */
 button {
   margin-top: 2rem;
   height: 2rem;
@@ -189,19 +199,47 @@ button {
   font-family: 'Share Tech Mono';
   color: white;
 }
+/* receipt */
 .receipt {
   padding-top: 5rem;
   font-family: 'Share Tech Mono';
 }
 
+/* about section */
+.about {
+  width: 100%;
+  height: 15rem;
+  background-color: black;
+  padding-bottom: 10rem;
+  margin-bottom: 0;
+}
+.about-heading,
+.contact-heading {
+  font-size: 2rem;
+}
+/* text in about */
+.about-text {
+  font-family: 'Share Tech Mono';
+  color: white;
+  padding: 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+p {
+  font-size: 1.5rem;
+}
+/* footer */
 .footer {
   width: 100%;
   height: 20rem;
   background-color: black;
+  font-family: 'Share Tech Mono';
   color: white;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  gap: 10rem;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
   padding-top: 3rem;
 }
