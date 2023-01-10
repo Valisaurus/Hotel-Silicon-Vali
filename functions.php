@@ -30,11 +30,12 @@ function checkTransferCode(string $transferCode, int $totalCost)
     }
     if (isset($transfer_code->error)) {
 
-        return  false;
+        return false;
     } else {
         return true;
     }
 }
+
 
 // a function that makes a deposit
 function deposit(string $transferCode)
@@ -45,7 +46,7 @@ function deposit(string $transferCode)
         'https://www.yrgopelago.se/centralbank/deposit',
         [
             'form_params' => [
-                'user' => "Dan",
+                'user' => "vali",
                 'transferCode' => $transferCode
 
             ]

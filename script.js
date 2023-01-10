@@ -1,79 +1,42 @@
+const budget = [
+  '/pictures/budget1.png',
+  //'/pictures/budget2.png',
+  //'/pictures/budget3.png',
+  '/pictures/budget4.png',
+  '/pictures/budget5.png',
+];
+
+const standard = [
+  '/pictures/standard1.png',
+  '/pictures/standard2.png',
+  '/pictures/standard3.png',
+];
+
+const luxury = [
+  '/pictures/luxury1.png',
+  '/pictures/luxury2.png',
+  '/pictures/luxury3.png',
+];
 //////////////////
-function startBudget() {
-  const imgBudget = document.querySelector('.budget');
-  const imgRoomBudget = document.querySelector('.room-budget');
+
+function imgChange(images, roomType) {
+  const img = document.querySelector(`.${roomType}`);
+  const imgRoom = document.querySelector(`.room-${roomType}`);
 
   let delayInSeconds = 1;
-
-  const budget = [
-    '/pictures/budget1.png',
-    //'/pictures/budget2.png',
-    //'/pictures/budget3.png',
-    '/pictures/budget4.png',
-    '/pictures/budget5.png',
-  ];
-
   let num = 0;
-  let changeImageBudget = function () {
-    let len = budget.length;
-    imgBudget.src = budget[num++];
-    imgRoomBudget.append(imgBudget);
+  let changeImage = function () {
+    let len = images.length;
+    img.src = images[num++];
+    imgRoom.append(img);
     if (num == len) {
       num = 0;
     }
   };
-
-  setInterval(changeImageBudget, delayInSeconds * 1500);
-}
-// window.onpageshow = function () {
-//   startBudget();
-//};
-
-function startStandard() {
-  const imgStandard = document.querySelector('.standard');
-  const imgRoomStandard = document.querySelector('.room-standard');
-
-  let delayInSeconds = 1;
-  const standard = [
-    '/pictures/standard1.png',
-    '/pictures/standard2.png',
-    '/pictures/standard3.png',
-  ];
-  let num = 0;
-  let changeImageStandard = function () {
-    let len = standard.length;
-    imgStandard.src = standard[num++];
-    imgRoomStandard.append(imgStandard);
-    if (num == len) {
-      num = 0;
-    }
-  };
-  setInterval(changeImageStandard, delayInSeconds * 1500);
-}
-
-function startLuxury() {
-  const imgLuxury = document.querySelector('.luxury');
-  const imgRoomLuxury = document.querySelector('.room-luxury');
-
-  let delayInSeconds = 1;
-  const luxury = [
-    '/pictures/luxury1.png',
-    '/pictures/luxury2.png',
-    '/pictures/luxury3.png',
-  ];
-  let num = 0;
-  let changeImageLuxury = function () {
-    let len = luxury.length;
-    imgLuxury.src = luxury[num++];
-    imgRoomLuxury.append(imgLuxury);
-    if (num == len) {
-      num = 0;
-    }
-  };
-  setInterval(changeImageLuxury, delayInSeconds * 1500);
+  setInterval(changeImage, delayInSeconds * 1500);
 }
 window.onpageshow = function () {
-  startBudget();
-  startStandard();
-  startLuxury();
+  imgChange(budget, 'budget');
+  imgChange(standard, 'standard');
+  imgChange(luxury, 'luxury');
 };

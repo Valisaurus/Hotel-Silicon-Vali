@@ -38,28 +38,21 @@ function validationForm()
 
                 //checks if the transfer code is valid
                 $isTransferCodeTrue = checkTransferCode($transferCode, $totalCost);
+                $isDepositTrue = deposit($transferCode);
 
-                if ($isTransferCodeTrue) {
+                if ($isTransferCodeTrue && $isDepositTrue) {
 
-                    $isDepositTrue = deposit($transferCode);
-                    if ($isDepositTrue) {
+                    insertIntoDb($name, $transferCode, $arrivalDate, $departureDate, $rooms, $totalCost);
 
-
-
-                        insertIntoDb($name, $transferCode, $arrivalDate, $departureDate, $rooms, $totalCost);
-
-                        getBookingConf($name, $arrivalDate, $departureDate, $totalCost);
-                    } else {
-                        echo "sorry transfer code not found or already used";
-                    }
+                    getBookingConf($name, $arrivalDate, $departureDate, $totalCost);
                 } else {
-                    echo "Sorry not enough money";
+                    echo "Sorry the transfer code could not be found or already used or not enough money! Please try another transfer code!";
                 }
             } else {
-                echo "sorry invalid transfer code";
+                echo "Sorry invalid format on transfer code!";
             }
         } else {
-            echo "sorry the date is not available";
+            echo "Sorry the dates are not available!";
         }
     }
 }
