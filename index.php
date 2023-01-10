@@ -17,8 +17,8 @@ include(__DIR__ . '/header.php');
 
         <section class="hotelinfo" id="rooms_section">
             <div class="hotelinfo-item">
-                <h2>Our rooms</h2>
-                <h3 class="room-heading">budget</h3>
+                <h2>ROOMS</h2>
+                <h3 class="room-heading">BUDGET</h3>
                 <div class="room-budget">
                     <div class="price">
                         $2
@@ -31,7 +31,7 @@ include(__DIR__ . '/header.php');
             </div>
 
             <div class="hotelinfo-item">
-                <h3 class="room-heading">standard</h3>
+                <h3 class="room-heading">STANDARD</h3>
                 <div class="room-standard">
                     <div class="price">
                         $4
@@ -44,7 +44,7 @@ include(__DIR__ . '/header.php');
             </div>
 
             <div class="hotelinfo-item">
-                <h3 class="room-heading">luxury</h3>
+                <h3 class="room-heading">LUXURY</h3>
                 <div class="room-luxury">
                     <div class="price">
                         $6
@@ -98,6 +98,7 @@ include(__DIR__ . '/header.php');
 
 <?php
 include(__DIR__ . '/footer.php');
+
 
 
 
