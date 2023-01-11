@@ -21,4 +21,5 @@
 
 .cal {
   background-color: var(--primary);
+  font-family: var(--para-head-font-family), Verdana;
 }
