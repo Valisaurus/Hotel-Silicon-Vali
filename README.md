@@ -1,12 +1,12 @@
 WHY NOT A GIF HERE? TO SET THE MODE.
 
-# Island name
+# Tech Island
 
-Some text about your lovely island
+This island is perfect for techers, hackers and everything in between.
 
-# Hotel name
+# Hotel Silicon-Vali
 
-Why not add some info about the hotel of your dreams?
+A dreamy irl web hotel with endless coding and internet.
 
 # Instructions
 
