@@ -27,6 +27,7 @@ function imgChange(images, roomType) {
   let changeImage = function () {
     let len = images.length;
     img.src = images[num++];
+    img.alt = 'Image of hotel room';
     imgRoom.append(img);
     if (num == len) {
       num = 0;

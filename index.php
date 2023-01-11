@@ -8,9 +8,9 @@ $prices = prices();
 
     <!-- hero with hotel pictures -->
     <div class="hero">
-        <img src="pictures/hotel1.jpg">
-        <img src="pictures/computer.jpg">
-        <img src="pictures/hotel2.jpg">
+        <img src="pictures/hotel1.jpg" alt="Hero Image of hotel">
+        <img src="pictures/computer.jpg" alt="Hero Image of computer">
+        <img src="pictures/hotel2.jpg" alt="Hero Image of hotel">
     </div>
 
     <!-- section with rooms and calendar -->
@@ -27,7 +27,7 @@ $prices = prices();
                 <div class="cal">
                     <?php echo $calendar1->draw(date('Y-m-d')); ?>
                 </div>
-                <img src="pictures/budget1.png" class="budget">
+                <img src="pictures/budget1.png" class="budget" alt="Image of hotel room">
             </div>
         </div>
 
@@ -39,7 +39,7 @@ $prices = prices();
                     echo "$" . $prices[1]['cost'];
                     ?>
                 </div>
-                <img src="pictures/standard1.png" class="standard">
+                <img src="pictures/standard1.png" class="standard" alt="Image of hotel room">
                 <div class="cal">
                     <?php echo $calendar2->draw(date('Y-m-d')); ?>
                 </div>
@@ -57,7 +57,7 @@ $prices = prices();
                 <div class="cal">
                     <?php echo $calendar3->draw(date('Y-m-d')); ?>
                 </div>
-                <img src="pictures/luxury1.png" class="luxury">
+                <img src="pictures/luxury1.png" class="luxury" alt="Image of hotel room">
             </div>
         </div>
 
@@ -81,14 +81,6 @@ $prices = prices();
                         <option value="2">Standard</option>
                         <option value="3">Luxury</option>
                     </select> <br>
-
-                    <!-- <label for="features">Features</label><br>
-        <input type="radio" id="html" name="fav_language" value="HTML">
-        <label for="html">HTML</label><br>
-        <input type="radio" id="css" name="fav_language" value="CSS">
-        <label for="css">CSS</label><br>
-        <input type="radio" id="javascript" name="fav_language" value="JavaScript">
-        <label for="javascript">JavaScript</label> <br> -->
                     <button type="submit"> Make a reservation </button>
                 </form>
                 <div class="receipt">

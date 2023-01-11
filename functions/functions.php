@@ -64,7 +64,7 @@ function deposit(string $transferCode): bool
 
 
 // function that calculates the total cost of the booking
-function totalCost(int $room_id, string $arrivalDate, string $departureDate): int
+function totalCost(int $room_id, string $arrivalDate, string $departureDate): int|bool
 {
     //db connection
     $db = connect('hotel.db');
@@ -110,6 +110,7 @@ function checkDateAvailability(string $arrivalDate, string $departureDate, int $
     if (empty($visitors) && $departureDate > $arrivalDate) {
         return true;
     }
+    return false;
 }
 
 
@@ -131,7 +132,7 @@ function prices()
 
 
 //function that inserts data from form to db
-function insertIntoDb(string $name, string $transferCode, string $arrivalDate, string $departureDate, int $room_id, int $totalCost)
+function insertIntoDb(string $name, string $transferCode, string $arrivalDate, string $departureDate, int $room_id, int $totalCost): void
 {
     //db connection
     $db = connect('hotel.db');
@@ -155,7 +156,7 @@ function insertIntoDb(string $name, string $transferCode, string $arrivalDate, s
 
 
 //function that gives a receipt when booked
-function getBookingConf(string $name, string $arrivalDate, string $departureDate, int $totalCost)
+function getBookingConf(string $name, string $arrivalDate, string $departureDate, int $totalCost): void
 {
     $receipt = [
         'island' => "Tech Island",
