@@ -31,7 +31,7 @@ foreach ($roomCalendar as $key => $calendar) {
 function bookedDays(array $roomCalendar)
 {
     //db connection
-    $database = connect('/hotel.db');
+    $database = connect('hotel.db');
 
     //sql query
     $statement = $database->query('SELECT bookings.arrival_date, bookings.departure_date, bookings.room_id, rooms.room FROM bookings INNER JOIN rooms ON rooms.id=bookings.room_id');

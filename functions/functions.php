@@ -1,7 +1,7 @@
 <?php
 
 declare(strict_types=1);
-require(__DIR__ . '/vendor/autoload.php');
+require(__DIR__ . '/../vendor/autoload.php');
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
@@ -67,7 +67,7 @@ function deposit(string $transferCode)
 function totalCost(int $room_id, string $arrivalDate, string $departureDate)
 {
     //db connection
-    $db = connect('/hotel.db');
+    $db = connect('hotel.db');
 
     //sql query
     $stmt = $db->prepare('SELECT cost FROM rooms WHERE id = :room_id');
@@ -86,7 +86,7 @@ function totalCost(int $room_id, string $arrivalDate, string $departureDate)
 function checkDateAvailability(string $arrivalDate, string $departureDate, int $room_id)
 {
     //db connection
-    $db = connect('/hotel.db');
+    $db = connect('hotel.db');
 
     //sql query
     $statement = $db->prepare('SELECT * FROM bookings
@@ -112,11 +112,29 @@ function checkDateAvailability(string $arrivalDate, string $departureDate, int $
     }
 }
 
+
+function prices()
+{
+    //db connection
+    $database = connect('hotel.db');
+
+    //sql query
+    $statement = $database->query('SELECT cost FROM rooms');
+
+    $statement->execute();
+    $prices = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+    return $prices;
+}
+
+
+
+
 //function that inserts data from form to db
 function insertIntoDb(string $name, string $transferCode, string $arrivalDate, string $departureDate, int $room_id, int $totalCost)
 {
     //db connection
-    $db = connect('/hotel.db');
+    $db = connect('hotel.db');
 
     //sql query
     $query = "INSERT INTO bookings (name, transfer_code, arrival_date, departure_date, room_id, total_cost) VALUES (:name, :transfer_code, :arrival_date, :departure_date, :room_id, :total_cost)";
@@ -132,6 +150,9 @@ function insertIntoDb(string $name, string $transferCode, string $arrivalDate, s
 
     $statement->execute();
 }
+
+
+
 
 //function that gives a receipt when booked
 function getBookingConf(string $name, string $arrivalDate, string $departureDate, int $totalCost)

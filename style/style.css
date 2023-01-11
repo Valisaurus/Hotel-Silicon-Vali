@@ -1,15 +1,15 @@
 @font-face {
   font-family: 'Press Start 2P';
-  src: url('/fonts/PressStart2P-Regular.woff2') format('woff2'),
-    url('/fonts/PressStart2P-Regular.woff') format('woff');
+  src: url('../fonts/PressStart2P-Regular.woff2') format('woff2'),
+    url('../fonts/PressStart2P-Regular.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Share Tech Mono';
-  src: url('/fonts/ShareTechMono-Regular.woff2') format('woff2'),
-    url('/fonts/ShareTechMono-Regular.woff') format('woff');
+  src: url('../fonts/ShareTechMono-Regular.woff2') format('woff2'),
+    url('../fonts/ShareTechMono-Regular.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
@@ -29,7 +29,7 @@ header {
 
 /* header with heading and backgroung img */
 .header-img {
-  background-image: url('/pictures/bg6.png');
+  background-image: url('../pictures/bg6.png');
   background-size: cover;
   height: 100%;
   width: 100%;

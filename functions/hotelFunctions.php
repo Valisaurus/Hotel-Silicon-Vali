@@ -13,7 +13,7 @@ and one function to control if a guid is valid.
 
 function connect(string $dbName): object
 {
-    $dbPath = __DIR__ . '/' . $dbName;
+    $dbPath = __DIR__ . '/../' . $dbName;
     $db = "sqlite:$dbPath";
 
     // Open the database file and catch the exception if it fails.

@@ -1,14 +1,16 @@
 <?php
 include(__DIR__ . '/header.php');
+$prices = prices();
+
 ?>
 
 <main>
 
     <!-- hero with hotel pictures -->
     <div class="hero">
-        <img src="/pictures/pexels-aleksandar-pasaric-hotel-night.jpg">
-        <img src="/pictures/pexels-junior-teixeira-640.jpg">
-        <img src="/pictures/pexels-efrain-alonso-hotel-street.jpg">
+        <img src="pictures/hotel1.jpg">
+        <img src="pictures/computer.jpg">
+        <img src="pictures/hotel2.jpg">
     </div>
 
     <!-- section with rooms and calendar -->
@@ -18,7 +20,9 @@ include(__DIR__ . '/header.php');
             <h3 class="room-heading">BUDGET</h3>
             <div class="room-budget">
                 <div class="price">
-                    $2
+                    <?php
+                    echo "$" . $prices[0]['cost'];
+                    ?>
                 </div>
                 <div class="cal">
                     <?php echo $calendar1->draw(date('Y-m-d')); ?>
@@ -31,7 +35,9 @@ include(__DIR__ . '/header.php');
             <h3 class="room-heading">STANDARD</h3>
             <div class="room-standard">
                 <div class="price">
-                    $4
+                    <?php
+                    echo "$" . $prices[1]['cost'];
+                    ?>
                 </div>
                 <img src="pictures/standard1.png" class="standard">
                 <div class="cal">
@@ -44,7 +50,9 @@ include(__DIR__ . '/header.php');
             <h3 class=" room-heading">LUXURY</h3>
             <div class="room-luxury">
                 <div class="price">
-                    $6
+                    <?php
+                    echo "$" . $prices[2]['cost'];
+                    ?>
                 </div>
                 <div class="cal">
                     <?php echo $calendar3->draw(date('Y-m-d')); ?>

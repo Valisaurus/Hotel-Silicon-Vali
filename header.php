@@ -13,15 +13,15 @@ require(__DIR__ . '/calendar.php');
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style/style.css">
-    <link rel="stylesheet" href="./style/calendar.css">
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/calendar.css">
     <title>Document</title>
 </head>
 
 <body>
     <header>
         <div class="header-img">
-            <h1 class="heading-one">SILICON-VALI- HOTEL</h1>
+            <h1 class="heading-one">HOTEL SILICON-VALI</h1>
         </div>
         <nav class="navbar">
             <ul>
@@ -29,7 +29,7 @@ require(__DIR__ . '/calendar.php');
                 <li><a href="#about_section">About</a></li>
                 <li><a href="#rooms_section">Rooms</a></li>
                 <li><a href="#form_section">Book</a></li>
-                <li><a href="#">Contact</a></li>
+
 
             </ul>
         </nav>
