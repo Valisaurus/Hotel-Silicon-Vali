@@ -9,7 +9,7 @@ use GuzzleHttp\Exception\ClientException;
 
 //function that checks the transfer code and total cost
 
-function checkTransferCode(string $transferCode, int $totalCost)
+function checkTransferCode(string $transferCode, int $totalCost): bool
 {
     $client = new Client();
     $response = $client->request(
@@ -36,7 +36,7 @@ function checkTransferCode(string $transferCode, int $totalCost)
 
 
 //  function that makes a deposit
-function deposit(string $transferCode)
+function deposit(string $transferCode): bool
 {
     $client = new Client();
     $response = $client->request(
@@ -64,7 +64,7 @@ function deposit(string $transferCode)
 
 
 // function that calculates the total cost of the booking
-function totalCost(int $room_id, string $arrivalDate, string $departureDate)
+function totalCost(int $room_id, string $arrivalDate, string $departureDate): int
 {
     //db connection
     $db = connect('hotel.db');
@@ -83,7 +83,7 @@ function totalCost(int $room_id, string $arrivalDate, string $departureDate)
 }
 
 //function that checks if chosen dates are available
-function checkDateAvailability(string $arrivalDate, string $departureDate, int $room_id)
+function checkDateAvailability(string $arrivalDate, string $departureDate, int $room_id): bool
 {
     //db connection
     $db = connect('hotel.db');
@@ -171,11 +171,11 @@ function getBookingConf(string $name, string $arrivalDate, string $departureDate
     ];
 
 
-    $getData = file_get_contents(__DIR__ . '/receipts/receipt.json');
+    $getData = file_get_contents(__DIR__ . '/../receipts/receipt.json');
     $tempArray = json_decode($getData, true);
     array_push($tempArray, $receipt);
     $json = json_encode($tempArray);
-    file_put_contents(__DIR__ . '/receipts/receipt.json', $json);
+    file_put_contents(__DIR__ . '/../receipts/receipt.json', $json);
 
     echo "Thank you for your booking" . " " . $name . "." . " " . "Here is your receipt <br>";
     echo json_encode(end($tempArray));
