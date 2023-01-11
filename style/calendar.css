@@ -1,3 +1,10 @@
+:root {
+  --primary: #ffffff;
+  --bg: #000000;
+  --hover-cal: #a59c9c;
+  --heading-font-family: 'Press Start 2P';
+  --para-head-font-family: 'Share Tech Mono';
+}
 .cal-th {
   padding: 1rem;
 }
@@ -8,10 +15,10 @@
 
 .mask-start,
 .mask {
-  background-color: rgb(165, 156, 156);
-  color: #ffffff;
+  background-color: var(--hover-cal);
+  color: var(--primary);
 }
 
 .cal {
-  background-color: #ffffff;
+  background-color: var(--primary);
 }
